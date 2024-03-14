@@ -1,0 +1,177 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Les Bieds : analyse des gas 2023},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Les Bieds : analyse des gas 2023}
+\author{}
+\date{\vspace{-2.5em}2024-02-19}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+Campagne de mesures : 31.05.2023 - 1.11.2023, 7 mesures
+
+Terrain effectué par Alicia Frésard
+(\href{mailto:aliciafresard_ecobio@protonmail.com}{\nolinkurl{aliciafresard\_ecobio@protonmail.com}}),
+assistée par Julie Boserup
+(\href{mailto:julie.boserup@lineco.ch}{\nolinkurl{julie.boserup@lineco.ch}})
+
+\hypertarget{site}{%
+\subsection{Site}\label{site}}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{documentation/maps/plots_map_1_2500} \caption{Plan du site}\label{fig:site-1}
+\end{figure}
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{documentation/maps/plan_sites} \caption{Plan du site}\label{fig:site-2}
+\end{figure}
+
+Les points de mesures ont été sélectionnés de manière à évaluer les
+émissions de gaz dans toutes les environnements présents
+
+\emph{2073:} bas marais à prairie humide, drains désactivés. Fauché Juin
+\emph{2517:} prairie. Fauchée Août, Septembre, \emph{2215:} prairie de
+fauche. Purinée et fauchée Juin \emph{HM:} haut marais (15= lande,
+16=betulaie sur tourbe) \emph{PL:} maraîchage, tourbe nue, plantes
+présents en septembre. Sous bâche en novembre
+
+\hypertarget{graphes}{%
+\subsection{Graphes}\label{graphes}}
+
+\hypertarget{co2-respiration-toutes-les-placettes}{%
+\subsubsection{CO2 respiration, toutes les
+placettes:}\label{co2-respiration-toutes-les-placettes}}
+
+\includegraphics{analyse_2023_files/figure-latex/CO2 all-1.pdf}
+\includegraphics{analyse_2023_files/figure-latex/boxplot CO2-1.pdf}
+
+à part une diminution des flux en novembre, la tendance à la hausse en
+été n'est pas frappante
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+\end{verbatim}
+
+\includegraphics{analyse_2023_files/figure-latex/CO2 site-1.pdf} - La
+parcelle 2215, toujours drainée, emet plus de CO2 que les autres. - 2073
+et le haut marais montrent une varaition saisonnière plus importante,
+probablement dû aux fluctuation de la nappe permises par l'absence de
+drains.Le pic de CO2 est dans le plot de land haut marais. Peut être du
+à une sécheresse importante de la tourbe, qui se décompose
+
+\begin{itemize}
+\item
+  2517 ancien lit du ruisseau émettent moins et en décroissance pendant
+  la saison
+\item
+  La parcelle de maraîchage émet mois que les autres
+\end{itemize}
+
+\hypertarget{co2-nee-toutes-les-placettes}{%
+\subsubsection{CO2 NEE, toutes les
+placettes}\label{co2-nee-toutes-les-placettes}}
+
+\begin{figure}
+\centering
+\includegraphics{analyse_2023_files/figure-latex/NEE all-1.pdf}
+\caption{toutes les placettes, CO2, NEE}
+\end{figure}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{analyse_2023_files/figure-latex/NEE grouped-1.pdf}
+\caption{toutes les placettes, CO2, NEE, per site}
+\end{figure}
+
+ATTENTION: la lumière jouant un rôle majeur dans l'efficacité de la
+photosynthèse, les comparaisons d'un jour à l'autre sont à faire avec
+prudence. Il est plus sûr de comparer les différents sites sur un même
+journée.
+
+la photosynthèse diminue les emissions de co2 sur toutes les placettes.
+le haut marais et 2575 sont en négatif en aout septembre,octobre et
+novembre
+
+\includegraphics{analyse_2023_files/figure-latex/PAR-1.pdf}
+\includegraphics{analyse_2023_files/figure-latex/methane-1.pdf}
+
+\includegraphics{analyse_2023_files/figure-latex/without may-1.pdf}
+
+Taux très faible voir négatif de ch4, dû à la profondeur de nappe trop
+importante. Les emissions ont lieu sur les sites submergés.
+
+le pic negatif correspond au haut marais. Le niveau de nappe est trop
+bas pour la production de ch4 mais les methanotrophes sont toujours
+actifs
+
+\end{document}

@@ -1,0 +1,100 @@
+---
+title: 'Les Bieds : analyse des gas 2023'
+output:
+  html_notebook:
+    fig_caption: true
+date: "2024-02-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tinytex)
+```
+
+## Introduction
+
+Campagne de mesures : 31.05.2023 - 1.11.2023, 7 mesures
+
+Terrain effectué par Alicia Frésard ([aliciafresard_ecobio\@protonmail.com](mailto:aliciafresard_ecobio@protonmail.com){.email}), assistée par Julie Boserup ([julie.boserup\@lineco.ch](mailto:julie.boserup@lineco.ch){.email})
+
+## Site
+
+```{r  site, out.width = "80%", fig.cap ="Plan du site"}
+knitr::include_graphics("documentation/maps/plots_map_1_2500.png")
+knitr::include_graphics("documentation/maps/plan_sites.png")
+```
+Les points de mesures ont été sélectionnés de manière à évaluer les émissions de gaz dans toutes les environnements présents.
+
+*2073:* bas marais à prairie humide, drains désactivés. Fauché Juin
+*2517:* prairie. Fauchée Août, Septembre, 
+*2215:* prairie de fauche. Purinée et fauchée Juin
+*HM:* haut marais (15= lande, 16=betulaie sur tourbe)
+*PL:* maraîchage, tourbe nue, plantes présents en septembre. Sous bâche en novembre
+
+## Overview du site global
+
+```{r source, include=FALSE}
+source("scripts/gas_analysis.R", local = knitr::knit_global())
+```
+
+### CO2 respiration, toutes les placettes:
+
+```{r  CO2 all, include=TRUE, fig.cap= "toutes les placettes, CO2, respiration"}
+g_all_r_co2
+```
+```{r boxplot CO2, fig.cap= "toutes les placettes boxplot, CO2, respiration"}
+b_all_r_co2+ scale_color_manual(values = pal)
+```
+
+à part une diminution des flux en novembre, la tendance à la hausse en été n'est pas frappante
+
+```{r  CO2 site, include=TRUE, fig.cap= "toutes les placettes par sites, CO2, respiration"}
+g_all_r_co2_s
+```
+- La parcelle 2215, toujours drainée, emet plus de CO2 que les autres. 
+- 2073 et le haut marais montrent une varaition saisonnière plus importante, probablement dû aux fluctuation de la nappe permises par l'absence de drains.Le pic de CO2 est dans le plot de land haut marais. Peut être du à une sécheresse importante de la tourbe, qui se décompose
+
+- 2517 ancien lit du ruisseau émettent moins et en décroissance pendant la saison
+
+- La parcelle de maraîchage émet mois que les autres 
+
+
+### CO2 NEE, toutes les placettes
+
+```{r NEE all, include=TRUE, fig.cap= "toutes les placettes, CO2, NEE"}
+g_all_n_co2
+```
+```{r NEE grouped, include=TRUE, fig.cap= "toutes les placettes, CO2, NEE, per site"}
+g_all_n_co2_s
+```
+
+ATTENTION: la lumière jouant un rôle majeur dans l'efficacité de la photosynthèse, les comparaisons d'un jour à l'autre sont à faire avec prudence. Il est plus sûr de comparer les différents sites sur un même journée.
+
+la photosynthèse diminue les emissions de co2 sur toutes les placettes. le haut marais et 2575 sont en négatif en aout septembre,octobre et novembre
+
+```{r PAR, fig.cap="Boxplot de variation de PAR, par jour" }
+g_par + scale_color_manual(values = pal)
+```
+
+## Methane
+
+L'oxidation du méthane est sensible à la lumière. Un taux d'oxidation 5 fois plus élevé à la lumière comparé à la pénombre à été démontré (Kox et. al, 2020). On observe ce phénomène ici aussi, quoique moins prononcé.
+
+check plot 10, qui est à 2000 en 
+
+
+```{r methane}
+g_all_r_ch4 
+g_all_n_ch4 
+g_all_r_ch4_s
+```
+
+```{r without may}
+g_all_r_ch4_may + scale_color_manual(values = pal)
+```
+
+Taux très faible voir négatif de ch4, dû à la profondeur de nappe trop importante.
+Les emissions ont lieu sur les sites submergés.
+
+le pic negatif correspond au haut marais. Le niveau de nappe est trop bas pour la production de ch4 mais les methanotrophes sont toujours actifs
