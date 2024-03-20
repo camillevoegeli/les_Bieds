@@ -37,6 +37,10 @@ Les points de mesures ont été sélectionnés de manière à évaluer les émis
 ```{r source, include=FALSE}
 source("scripts/gas_analysis.R", local = knitr::knit_global())
 ```
+### Commentaires données gas acquises
+on est dans la majorité des cas aux alentours de 2000 nmol mol-1(ppb) CH4 et aux alentours de 500 µmol mol-1 (ppm) CO2.Les seuls endroit ou le ch4 est bine plus 
+haut sont en 10 11 12, mais semble être des erreurs -> A VERIFIER
+
 
 ### CO2 respiration, toutes les placettes:
 

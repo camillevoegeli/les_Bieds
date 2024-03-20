@@ -31,6 +31,7 @@ library(vegan)
 library(tibble)
 library(forcats)
 
+
 '%!in%' <- function(x,y)!('%in%'(x,y))
 
 # Function ----------------------------------------------------------------
@@ -132,8 +133,17 @@ data_select <- data_select %>%
 
 
 
-write_csv(data_select, "processed_data/gas_data.csv")
+#write_csv(data_select, "processed_data/gas_data.csv")
 
 
+# To go to measured values  --------------------------------------------------------------------
 
+#keep that one
+bie12_0531 <- tidy_multi_tb$data[[503]] #the [[x]] correspond to the raw number 
+plot(bie12_0531$timestamp, bie12_0531$ch4)
 
+bie12_0531_respi <- tidy_multi_tb$data[[505]] #the [[x]] correspond to the raw number 
+plot(bie12_0531_respi $timestamp, bie12_0531_respi$ch4)
+
+bie11_0531 <- tidy_multi_tb$data[[509]] #the [[x]] correspond to the raw number 
+plot(bie11_0531$timestamp, bie11_0531$ch4)

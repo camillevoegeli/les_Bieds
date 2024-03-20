@@ -21,6 +21,11 @@ pal <- c("aquamarine","brown","aquamarine4","gold","blue", "bisque3",
            "chocolate1", "darkgreen","darkorchid1", "bisque", "limegreen", 
            "magenta","olivedrab3")
 
+# cleaning ----------------------------------------------------------------
+
+gas <- gas[gas$r2 > 0.75,]
+
+
 ## separate as list -------------------------------------------------------
 # for easier manipulation, create list with different object for respi and nee
 # this creates nested lists (lists inside lists)
@@ -45,7 +50,7 @@ for (gas in c("co2", "ch4")) { #these 2 line allow to access to the same column 
   }
 }
 
-View(data$ch4$respi) #to see these data in full
+#View(data$ch4$respi) #to see these data in full
 
 
 # Analysis ----------------------------------------------------------------
