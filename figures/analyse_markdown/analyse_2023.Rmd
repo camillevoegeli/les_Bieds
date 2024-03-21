@@ -94,6 +94,10 @@ g_all_n_ch4
 g_all_r_ch4_s
 ```
 
+CHECK: pour NEE, vérifier les flux 10 11 12, possible ébullition ? Ou peut-être 
+que l'effet positif de la lumière sur l'oxidation ch4 n'est pas valable sur les 
+site immergés
+
 ```{r without may}
 g_all_r_ch4_may + scale_color_manual(values = pal)
 ```
@@ -102,3 +106,13 @@ Taux très faible voir négatif de ch4, dû à la profondeur de nappe trop impor
 Les emissions ont lieu sur les sites submergés.
 
 le pic negatif correspond au haut marais. Le niveau de nappe est trop bas pour la production de ch4 mais les methanotrophes sont toujours actifs
+
+## Par parcelle
+
+```{r 2073 ch4}
+g_2073_r_ch4
+g_2073_n_ch4
+
+```
+Comme attendu, diminution des émissions à la lumière pour 10, effet inverse pour
+11 -> CHECK VALUES
