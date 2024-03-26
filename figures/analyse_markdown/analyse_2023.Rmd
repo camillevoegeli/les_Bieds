@@ -18,6 +18,16 @@ Campagne de mesures : 31.05.2023 - 1.11.2023, 7 mesures
 
 Terrain effectué par Alicia Frésard ([aliciafresard_ecobio\@protonmail.com](mailto:aliciafresard_ecobio@protonmail.com){.email}), assistée par Julie Boserup ([julie.boserup\@lineco.ch](mailto:julie.boserup@lineco.ch){.email})
 
+## Traitement des données
+La fiabilité d'une mesure est estimée, entre autre, par son $R^2$. Le seuil généralement utilisé pour valider une mesure est de 0.75. Pour ce projet, 39 mesures  sur 504 (~8%) ont un $R^2$ en dessous du seuil et sont retirés des graphes. 10 concernent les mesures de respiration uniquement, 29 les mesures avec photosynthèse.
+14 ont eu lieu le 1.11.2023, les autres sont bien réparties.
+Un $R^2$ faible est plus probable quand le flux est très faible, dû au bruit généré.
+
+Pour limiter la perte des mesures effectuer, vérifier sur le terrain que le $R^2$ obtenu est au dessus du seuil.
+
+
+Afin de faciliter la comparaison entre sites et jours de mesures, les données de respirations uniquement sont montrées (mesurées dans le noir)
+
 ## Site
 
 ```{r  site, out.width = "80%", fig.cap ="Plan du site"}
@@ -83,9 +93,9 @@ g_par + scale_color_manual(values = pal)
 
 ## Methane
 
-L'oxidation du méthane est sensible à la lumière. Un taux d'oxidation 5 fois plus élevé à la lumière comparé à la pénombre à été démontré (Kox et. al, 2020). On observe ce phénomène ici aussi, quoique moins prononcé.
+L'oxidation du méthane est sensible à la lumière. Un taux d'oxidation 5 fois plus élevé à la lumière comparé à la pénombre à été démontré (Kox et. al, 2020). On observe ce phénomène ici aussi, quoique moins prononcé. la parcelle 11 ne respecte pas ceci en mai et juin.
 
-check plot 10, qui est à 2000 en 
+check plot 10, qui est à 2000 en mai
 
 
 ```{r methane}
@@ -94,9 +104,6 @@ g_all_n_ch4
 g_all_r_ch4_s
 ```
 
-CHECK: pour NEE, vérifier les flux 10 11 12, possible ébullition ? Ou peut-être 
-que l'effet positif de la lumière sur l'oxidation ch4 n'est pas valable sur les 
-site immergés
 
 ```{r without may}
 g_all_r_ch4_may + scale_color_manual(values = pal)
@@ -108,11 +115,33 @@ Les emissions ont lieu sur les sites submergés.
 le pic negatif correspond au haut marais. Le niveau de nappe est trop bas pour la production de ch4 mais les methanotrophes sont toujours actifs
 
 ## Par parcelle
+### 2073
 
 ```{r 2073 ch4}
 g_2073_r_ch4
 g_2073_n_ch4
 
 ```
-Comme attendu, diminution des émissions à la lumière pour 10, effet inverse pour
-11 -> CHECK VALUES
+ATTENTION, toutes les courbes de la 2073 pour mai sauf 10nee et 11 respi montre des signes d'ébullition, probablement dû au sol immergé (WTD=-1.5 à -2).
+
+il est très probable que ces placettes ont émis plus de méthane à ce moment que le reste de l'année, mais la valeur absolue n'est pas fiable.
+
+```{r 2073 sans mai}
+g_2073_n_ch4_may
+g_2073_r_ch4_may
+```
+Comme on peut s'y attendre émissions de méthane quand les sites sont immergés et absorption quand ils sont plus secs (immergés en novembre et mai, vannes des drains ouvertes en juillet). 
+
+```{r 2073 co2}
+g_2073_r_co2
+g_2073_n_co2
+```
+Comme attendu émissions plus importantes lorsque le sol est sec.
+
+
+
+# Annexes
+```{r bad r2}
+print(bad)
+```
+

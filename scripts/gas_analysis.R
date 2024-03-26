@@ -22,7 +22,7 @@ pal <- c("aquamarine","brown","aquamarine4","gold","blue", "bisque3",
            "magenta","olivedrab3")
 
 # cleaning ----------------------------------------------------------------
-
+bad <- gas[gas$r2 < 0.75,]
 gas <- gas[gas$r2 > 0.75,]
 
 
@@ -173,6 +173,24 @@ g_par <- ggplot(env_filtered, aes(x = date, y = luminosité, group = date)) +
 
 g_par
 
+
+# temperature -------------------------------------------------------------
+temp <- env %>% filter(!is.na(`T°C a 30 cm`))
+
+g_temp <- ggplot(temp[temp$méthode == "nee",], aes(x = date, y = `T°C a 30 cm`, color = plot)) +
+  geom_line(aes(group= plot)) +
+  geom_point()+
+  scale_color_manual(values = pal)
+g_temp
+
+temp_surf <- gas %>%
+  filter(gas == "co2" & protocol == "respi")
+temp_surf$plot <- factor(temp_surf$plot)
+g_temp_surf <- ggplot(temp_surf,aes(x= date, y= soilp_t, colour = plot))+ 
+  geom_line(aes(group= plot)) +
+  geom_point() +
+  scale_color_manual(values = pal)
+g_temp_surf
 
 # Per site -----------------------------------------------------------------
 b_2073 <- list()
