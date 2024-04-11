@@ -19,11 +19,11 @@ Campagne de mesures : 31.05.2023 - 1.11.2023, 7 mesures
 Terrain effectué par Alicia Frésard ([aliciafresard_ecobio\@protonmail.com](mailto:aliciafresard_ecobio@protonmail.com){.email}), assistée par Julie Boserup ([julie.boserup\@lineco.ch](mailto:julie.boserup@lineco.ch){.email})
 
 ## Traitement des données
-La fiabilité d'une mesure est estimée, entre autre, par son $R^2$. Le seuil généralement utilisé pour valider une mesure est de 0.75. Pour ce projet, 39 mesures  sur 504 (~8%) ont un $R^2$ en dessous du seuil et sont retirés des graphes. 10 concernent les mesures de respiration uniquement, 29 les mesures avec photosynthèse.
+La fiabilité d'une mesure est estimée, entre autre, par son $r^2$. Le seuil généralement utilisé pour valider une mesure est de 0.75. Pour ce projet, 39 mesures  sur 504 (~8%) ont un $r^2$ en dessous du seuil et sont retirés des graphes. 10 concernent les mesures de respiration uniquement, 29 les mesures avec photosynthèse.
 14 ont eu lieu le 1.11.2023, les autres sont bien réparties.
-Un $R^2$ faible est plus probable quand le flux est très faible, dû au bruit généré.
+Un $r^2$ faible est plus probable quand le flux est très faible, dû au bruit généré.
 
-Pour limiter la perte des mesures effectuer, vérifier sur le terrain que le $R^2$ obtenu est au dessus du seuil.
+Pour limiter la perte des mesures effectuer, vérifier sur le terrain que le $r^2$ obtenu est au dessus du seuil.
 
 
 Afin de faciliter la comparaison entre sites et jours de mesures, les données de respirations uniquement sont montrées (mesurées dans le noir)
@@ -48,8 +48,14 @@ Les points de mesures ont été sélectionnés de manière à évaluer les émis
 source("scripts/gas_analysis.R", local = knitr::knit_global())
 ```
 ### Commentaires données gas acquises
-on est dans la majorité des cas aux alentours de 2000 nmol mol-1(ppb) CH4 et aux alentours de 500 µmol mol-1 (ppm) CO2.Les seuls endroit ou le ch4 est bine plus 
-haut sont en 10 11 12, mais semble être des erreurs -> A VERIFIER
+on est dans la majorité des cas aux alentours de 2000 nmol mol-1(ppb) CH4 et aux alentours de 500 µmol mol-1 (ppm) CO2.Les seuls endroit ou le ch4 est bien plus haut sont en 10 11 12, mais semble être des erreurs -> A VERIFIER
+
+
+### Température
+```{r température}
+g_temp
+g_temp_surf
+```
 
 
 ### CO2 respiration, toutes les placettes:
@@ -87,6 +93,7 @@ ATTENTION: la lumière jouant un rôle majeur dans l'efficacité de la photosynt
 
 la photosynthèse diminue les emissions de co2 sur toutes les placettes. le haut marais et 2575 sont en négatif en aout septembre,octobre et novembre
 
+### PAR
 ```{r PAR, fig.cap="Boxplot de variation de PAR, par jour" }
 g_par + scale_color_manual(values = pal)
 ```
@@ -138,6 +145,42 @@ g_2073_n_co2
 ```
 Comme attendu émissions plus importantes lorsque le sol est sec.
 
+## 2517
+```{r 2517 all}
+g_2517_r_ch4
+g_2517_n_ch4
+g_2517_r_co2
+g_2517_n_co2
+```
+
+## 2215
+```{r 2215}
+g_2215_r_ch4
+g_2215_n_ch4
+g_2215_r_co2
+g_2215_n_co2
+```
+## HM
+```{r HM}
+g_HM_r_ch4
+g_HM_n_ch4
+g_HM_r_co2
+g_HM_n_co2
+```
+## PL
+```{r}
+g_PL_r_ch4
+g_PL_n_ch4
+g_PL_r_co2
+g_PL_n_co2
+```
+ATTENTION: la plupart des points PL n'ont pas un bon $r^2$.
+Ch4 très perturbé, à voir dans les flux si on a une explication
+
+# Recommendations
+Lors des mesures sur le terrain, vérifier les r2 après la mesure. Toute mesure en dessous de 0.8 devrait être refaite.
+
+Attention aux zone inondées, plus sensibles au piétinement.
 
 
 # Annexes

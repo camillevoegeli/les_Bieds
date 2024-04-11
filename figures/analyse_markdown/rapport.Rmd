@@ -1,0 +1,53 @@
+---
+title: "Les Bieds : flux de gas"
+author : Camille Voegeli
+date: "avril 2024"
+output: html_notebook
+fig_caption: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tinytex)
+```
+## Introduction
+
+Campagne de mesures : 31.05.2023 - 1.11.2023, 7 mesures
+
+Terrain effectué par Alicia Frésard ([aliciafresard_ecobio\@protonmail.com](mailto:aliciafresard_ecobio@protonmail.com){.email}), assistée par Julie Boserup ([julie.boserup\@lineco.ch](mailto:julie.boserup@lineco.ch){.email})
+
+## Traitement des données
+La fiabilité d'une mesure est estimée, entre autre, par son $r^2$. Le seuil généralement utilisé pour valider une mesure est de 0.75. Pour ce projet, 39 mesures  sur 504 (~8%) ont un $r^2$ en dessous du seuil et sont retirés des graphes. 10 concernent les mesures de respiration uniquement, 29 les mesures avec photosynthèse.
+14 ont eu lieu le 1.11.2023, les autres sont bien réparties.
+Un $r^2$ faible est plus probable quand le flux est très faible, dû au bruit généré.
+
+Pour limiter la perte des mesures effectuer, vérifier sur le terrain que le $r^2$ obtenu est au dessus du seuil.
+
+
+Afin de faciliter la comparaison entre sites et jours de mesures, les données de respirations uniquement sont montrées (mesurées dans le noir)
+
+
+## Site
+
+```{r  site, out.width = "80%", fig.cap ="Plan du site"}
+knitr::include_graphics("documentation/maps/plots_map_1_2500.png")
+knitr::include_graphics("documentation/maps/plan_sites.png")
+```
+
+Les points de mesures ont été sélectionnés de manière à évaluer les émissions de gaz dans toutes les environnements présents.
+
+*2073:* bas marais à prairie humide, drains désactivés. Fauché Juin
+*2517:* prairie. Fauchée Août, Septembre, 
+*2215:* prairie de fauche. Purinée et fauchée Juin
+*HM:* haut marais (15= lande, 16=betulaie sur tourbe)
+*PL:* maraîchage, tourbe nue, plantes présents en septembre. Sous bâche en novembre
+
+## Overview du site global
+
+```{r source, include=FALSE}
+source("scripts/gas_analysis.R", local = knitr::knit_global())
+```
+### Commentaires données gas acquises
+on est dans la majorité des cas aux alentours de 2000 nmol mol-1(ppb) CH4 et aux alentours de 500 µmol mol-1 (ppm) CO2.Les seuls endroit ou le ch4 est bien plus haut sont en 10 11 12, mais semble être des erreurs -> A VERIFIER
+
