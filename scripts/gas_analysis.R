@@ -27,6 +27,12 @@ pal_site <- c("2073"= "red", "2517"= "blue", "2215"= "green", "HM"= "orange",
 
 gas_data$plot <- factor(gas_data$plot, levels = 1:18)
 env$plot <- gsub("^BIE(\\d+).*", "\\1", env$plot)
+
+env$site <- ifelse(env$plot %in% c("1", "2", "3", "4", "13", "14"), "2215",
+                   ifelse(env$plot %in% c("5", "6", "7","8","9"), "2517",
+                          ifelse(env$plot %in% c("10", "11", "12"), "2073",
+                                 ifelse(env$plot %in% c("15", "16"), "HM",
+                                 "PL"))))
 # cleaning ----------------------------------------------------------------
 bad <- gas_data[gas_data$r2 < 0.75,]
 gas_data <- gas_data[gas_data$r2 > 0.75,]
@@ -91,6 +97,7 @@ g_all_r_co2 <- ggplot(data$co2$respi, aes(x=date, y= F_o, colour=plot)) +
   theme_pander()
 
 g_all_r_co2
+# ggsave(filename="co2_respi.png", plot= g_all_r_co2,path = "figures/graphs/all_plots/")
   
 #grouped by site (regression LOESS)
 g_all_r_co2_s <- ggplot(data$co2$respi, aes(x=date, y= F_o, colour=site)) +
@@ -98,8 +105,11 @@ g_all_r_co2_s <- ggplot(data$co2$respi, aes(x=date, y= F_o, colour=site)) +
   geom_smooth(se=F)+
   labs(title=expression("CO"[2]*" respiration, par parcelle"), 
        x="date", y=expression("CO"[2]*" (µmol m"^{-2}*"s"^{-1}*")")) +
-  scale_color_manual(values = pal_site)
+  scale_color_manual(values = pal_site)+
+  theme_pander()
 g_all_r_co2_s
+# ggsave(filename="co2_respi_loess.png", plot= g_all_r_co2_s,path = "figures/graphs/all_plots/")
+
 
 g_all_n_co2 <- ggplot(data$co2$nee, aes(x=date, y= F_o, color= plot))+
   geom_line() +
@@ -126,7 +136,8 @@ g_all_r_ch4 <- ggplot(data$ch4$respi, aes(x=date, y= F_o, color= plot))+
   geom_point()+ 
   scale_color_manual(values = pal) +
   labs(title=expression("CH"[4]*", respiration, toutes les placettes"), 
-       x="date", y=expression("CH"[4]*" (nmol m"^{-2}*"s"^{-1}*")"))
+       x="date", y=expression("CH"[4]*" (nmol m"^{-2}*"s"^{-1}*")"))+
+  theme_pander()
 
 g_all_r_ch4
 
@@ -205,7 +216,8 @@ temp <- env %>% filter(!is.na(`T°C a 30 cm`))
 g_temp <- ggplot(temp[temp$méthode == "nee",], aes(x = date, y = `T°C a 30 cm`, color = plot)) +
   geom_line(aes(group= plot)) +
   geom_point()+
-  scale_color_manual(values = pal)
+  scale_color_manual(values = pal) +
+  ylab("T°C a 30 cm")
 g_temp
 
 temp_surf <- gas_data %>%
@@ -214,8 +226,26 @@ temp_surf$plot <- factor(temp_surf$plot)
 g_temp_surf <- ggplot(temp_surf,aes(x= date, y= soilp_t, colour = plot))+ 
   geom_line(aes(group= plot)) +
   geom_point() +
-  scale_color_manual(values = pal)
+  scale_color_manual(values = pal)+
+  ylab("T°C sol en surface")
 g_temp_surf
+
+g_temp_loess <- ggplot(temp[temp$méthode == "nee",], aes(x = date, y = `T°C a 30 cm`, color = site)) +
+  geom_point()+
+  geom_smooth(se=F)+
+  scale_color_manual(values = pal_site) +
+  ylab("T°C a 30 cm")
+g_temp_loess
+# ggsave(filename="temp_prof_loess.png", plot= g_temp_loess,path = "figures/graphs/all_plots/")
+
+
+g_temp_surf_loess <- ggplot(temp_surf,aes(x= date, y= soilp_t, colour = site))+ 
+  geom_point() +
+  geom_smooth(se=F)+
+  scale_color_manual(values = pal_site)+
+  ylab("T°C sol en surface")
+g_temp_surf_loess
+# ggsave(filename="temp_surf_loess.png", plot= g_temp_surf_loess,path = "figures/graphs/all_plots/")
 
 # Per site -----------------------------------------------------------------
 

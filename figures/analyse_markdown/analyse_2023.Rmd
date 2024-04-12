@@ -55,7 +55,18 @@ on est dans la majorité des cas aux alentours de 2000 nmol mol-1(ppb) CH4 et au
 ```{r température}
 g_temp
 g_temp_surf
+g_temp_loess
+g_temp_surf_loess
 ```
+
+En surface, la température à chuté en dessous de 20°C avant de remonter fin août. Elle diminue ensuite et atteint moins de 10°C en novembre
+
+à 30cm de profondeur, le sol se réchauffe et atteint son pic en août, avant de diminuer.
+
+Toutes les placettes suivent les mêmes tendances de températures. Les parcelles 
+2073 et 2517 se réchauffent moins vite, peut-être dû à une humidité plus importante.
+Les parcelles de maraîchage, à ce moment surface de tourbe nue, se réchauffent 
+de manière plus importante que les autres.
 
 
 ### CO2 respiration, toutes les placettes:
@@ -63,11 +74,7 @@ g_temp_surf
 ```{r  CO2 all, include=TRUE, fig.cap= "toutes les placettes, CO2, respiration"}
 g_all_r_co2
 ```
-```{r boxplot CO2, fig.cap= "toutes les placettes boxplot, CO2, respiration"}
-b_all_r_co2+ scale_color_manual(values = pal)
-```
 
-à part une diminution des flux en novembre, la tendance à la hausse en été n'est pas frappante
 
 ```{r  CO2 site, include=TRUE, fig.cap= "toutes les placettes par sites, CO2, respiration"}
 g_all_r_co2_s
